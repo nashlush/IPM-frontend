@@ -302,7 +302,13 @@ function voice() {
     .then(response => response.json())
  
     // Displaying results to console
-    .then(json => console.log(json.answer));
+    .then(json => {
+      console.log(json.answer);
+      const myArray = json.answer.split(":");
+      let link = "https:" + myArray[2];
+      console.log(link);
+      window.open(link,"_blank");
+    });
   };
   recognition.start();
 }
