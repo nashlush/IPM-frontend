@@ -283,7 +283,26 @@ function voice() {
     text = event.results[0][0].transcript;
     console.log(text);
 
-    fetch("");
+    fetch("http://192.168.0.104:5444/ipm/command", {
+     
+      // Adding method type
+      method: "POST",
+      
+      // Adding body or contents to send
+      body: JSON.stringify({
+          command : text
+      }),
+      
+      // Adding headers to the request
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+
+    })
+    .then(response => response.json())
+ 
+    // Displaying results to console
+    .then(json => console.log(json.answer));
   };
   recognition.start();
 }
