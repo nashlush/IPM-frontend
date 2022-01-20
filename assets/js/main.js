@@ -277,65 +277,60 @@
 var text = "";
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function demo(link){
+async function demo(link) {
   await sleep(2000);
-  if(link != null)
-    window.open(link,"_blank");
-  document.getElementById("message_text").innerHTML = "Tap on the microphone &#38";
-  document.getElementById("message_text_2").innerHTML = "Ask a query to the Intelligent Product Master";
+  if (link != null) window.open(link, "_blank");
+  document.getElementById("message_text").innerHTML =
+    "Tap on the microphone &#38";
+  document.getElementById("message_text_2").innerHTML =
+    "Ask a query to the Intelligent Product Master";
 }
 
- function voice() {
+function voice() {
   var recognition = new webkitSpeechRecognition();
   recognition.lang = "en-GB";
   recognition.onresult = function (event) {
     text = event.results[0][0].transcript;
     console.log(text);
 
-    fetch("http://192.168.0.104:5444/ipm/command", {
-     
+    fetch("http://192.168.43.11:5444/ipm/command", {
       // Adding method type
       method: "POST",
-      
+
       // Adding body or contents to send
       body: JSON.stringify({
-          command : text
+        command: text,
       }),
-      
-      // Adding headers to the request
+
+      // Adding headers the request
       headers: {
-          "Content-type": "application/json; charset=UTF-8"
-      }
-
+        "Content-type": "application/json; charset=UTF-8",
+      },
     })
-    .then(response => response.json())
- 
-    // Displaying results to console
-    .then(json => {
-      console.log(json.answer);
-      if(json.answer.includes("http"))
-      {
-        const myArray = json.answer.split(":");
-        let link = "https:" + myArray[2];
-        console.log(link);
-  
-        document.getElementById("message_text").innerHTML = myArray[0];
-        document.getElementById("message_text_2").innerHTML = "Let me Redirect..!";
-  
-        demo(link);
-      }
+      .then((response) => response.json())
 
-      else
-      {
-        document.getElementById("message_text").innerHTML = json.answer;
-        document.getElementById("message_text_2").innerHTML = "";
-        demo(null);
-      }
+      // Displaying results to console
+      .then((json) => {
+        console.log(json.answer);
+        if (json.answer.includes("http")) {
+          const myArray = json.answer.split(":");
+          let link = "https:" + myArray[2];
+          console.log(link);
 
-    });
+          document.getElementById("message_text").innerHTML = myArray[0];
+          document.getElementById("message_text_2").innerHTML =
+            "Let me Redirect..!";
+
+          demo(link);
+        } else {
+          document.getElementById("message_text").innerHTML = json.answer;
+          document.getElementById("message_text_2").innerHTML = "";
+          demo(null);
+        }
+      });
   };
   recognition.start();
 }
