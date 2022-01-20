@@ -276,7 +276,19 @@
 
 var text = "";
 
-function voice() {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function demo(link){
+  await sleep(2000);
+  if(link != null)
+    window.open(link,"_blank");
+  document.getElementById("message_text").innerHTML = "Tap on the microphone &#38";
+  document.getElementById("message_text_2").innerHTML = "Ask a query to the Intelligent Product Master";
+}
+
+ function voice() {
   var recognition = new webkitSpeechRecognition();
   recognition.lang = "en-GB";
   recognition.onresult = function (event) {
@@ -304,10 +316,25 @@ function voice() {
     // Displaying results to console
     .then(json => {
       console.log(json.answer);
-      const myArray = json.answer.split(":");
-      let link = "https:" + myArray[2];
-      console.log(link);
-      window.open(link,"_blank");
+      if(json.answer.includes("http"))
+      {
+        const myArray = json.answer.split(":");
+        let link = "https:" + myArray[2];
+        console.log(link);
+  
+        document.getElementById("message_text").innerHTML = myArray[0];
+        document.getElementById("message_text_2").innerHTML = "Let me Redirect..!";
+  
+        demo(link);
+      }
+
+      else
+      {
+        document.getElementById("message_text").innerHTML = json.answer;
+        document.getElementById("message_text_2").innerHTML = "";
+        demo(null);
+      }
+
     });
   };
   recognition.start();
