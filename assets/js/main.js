@@ -283,10 +283,8 @@ function sleep(ms) {
 async function demo(link) {
   await sleep(2000);
   if (link != null) window.open(link, "_blank");
-  document.getElementById("message_text").innerHTML =
-    "Tap on the microphone &#38";
-  document.getElementById("message_text_2").innerHTML =
-    "Ask a query to the Intelligent Product Master";
+  document.getElementById("message_text").innerHTML = "Tap on the microphone";
+  document.getElementById("message_text_2").innerHTML = "";
 }
 
 function voice() {
