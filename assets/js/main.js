@@ -273,17 +273,3 @@
 })();
 
 // mic speech to text code
-
-var text = "";
-
-function voice() {
-  var recognition = new webkitSpeechRecognition();
-  recognition.lang = "en-GB";
-  recognition.onresult = function (event) {
-    text = event.results[0][0].transcript;
-    console.log(text);
-
-    fetch("");
-  };
-  recognition.start();
-}
