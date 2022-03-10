@@ -32,6 +32,8 @@ h6 {
   font-family: "Raleway", sans-serif;
 }
 
+
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -415,6 +417,10 @@ h6 {
 section {
   padding: 60px 0;
   overflow: hidden;
+}
+
+.jira-left-section{
+  background-color: #1ba1fa;
 }
 
 .section-bg {
@@ -1092,6 +1098,107 @@ section {
 .team .member:hover .social {
   opacity: 1;
 }
+
+/*--------------------------------------------------------------
+# JIRA Setup
+--------------------------------------------------------------*/
+.jira .jira-section {
+  margin-bottom: 20px;
+  overflow: hidden;
+  text-align: right;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.jira .box{
+  -webkit-box-shadow: 15px 17px 30px 8px rgba(0,0,0,0.79);
+  -moz-box-shadow: 15px 17px 30px 8px rgba(0,0,0,0.79);
+  box-shadow: 15px 17px 30px 8px rgba(0,0,0,0.79);
+}
+
+.jira .jira-form{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    align-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+}
+
+.jira .form-content{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.jira .label {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  width: 400px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+
+.jira .selectBox select{
+  background: #0563af;
+  border-radius: 25px;
+  color: #fff;
+  padding: 10px;
+  width: 250px;
+  height: 50px;
+  border: none;
+  text-align: center;
+  font-size: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,.5);
+  -webkit-appearance: button;
+  outline: none;
+}
+
+.jira .selectBox:before{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  align-items: right;
+  line-height: 50px;
+  color: #fff;
+  font-size: 28px;
+  background: #007ce0;
+  pointer-events: none;
+}
+
+.jira .selectBox:hover:before{
+  background: #0472ca;
+}
+
+.jira .jira-button{
+  align-items: center;
+}
+
+.jira .resize_fit_center{
+  align-items: center;
+  position: relative;
+  font-size: 5em;
+  text-shadow: 0 0 50px #0f0,
+  0 0 100px #0f0,
+  0 0 150px #0f0,
+  0 0 200px #0f0,
+  0 0 250px #0f0;
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate{
+  0%{
+    filter: hue-rotate(0deg);
+  }
+
+  100%{
+    filter: hue-rotate(360deg);
+  }
+}
+
+
 
 /*--------------------------------------------------------------
 # Pricing

@@ -294,7 +294,7 @@ function voice() {
     text = event.results[0][0].transcript;
     console.log(text);
 
-    fetch("http://192.168.43.89:5444/ipm/command", {
+    fetch("http://192.168.0.104:5444/ipm/command", {
       // Adding method type
       method: "POST",
 
