@@ -4,6 +4,9 @@
  * Author: BootstrapMade.com
  * License: https://bootstrapmade.com/license/
  */
+
+var portConfig = "192.168.43.89:5444";
+
 (function () {
   "use strict";
 
@@ -294,7 +297,7 @@ function voice() {
     text = event.results[0][0].transcript;
     console.log(text);
 
-    fetch("http://192.168.0.104:5444/ipm/command", {
+    fetch("http://" + portConfig + "/ipm/command", {
       // Adding method type
       method: "POST",
 
@@ -331,4 +334,44 @@ function voice() {
       });
   };
   recognition.start();
+}
+
+let JiraUserName = "";
+let JiraAccessToken = "";
+
+//creating jira issue
+function createIssue() {
+  console.log("Arrived here");
+  if (JiraUserName == "" || JiraAccessToken == "") {
+    makeConnection();
+  }
+
+  fetch(`http://${portConfig}/ipm/jira`, {
+    method: "POST",
+
+    //Adding the payload required
+    body: JSON.stringify({
+      username: JiraUserName,
+      password: JiraAccessToken,
+    }),
+
+    // Adding headers the request
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    mode: "no-cors",
+  })
+    .then((response) => response.json())
+
+    // Displaying results to console
+    .then((data) => {
+      console.log(data);
+    });
+}
+
+function makeConnection() {
+  const arr = prompt("Enter Jira username and Access Token: ");
+  JiraUserName = arr[0];
+  JiraAccessToken = arr[1];
 }

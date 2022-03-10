@@ -199,7 +199,7 @@
 
                 <div class="form-group form-content">
                   <label for="projectKey" class="label">Project Key:</label>
-                  <input type="text" class="form-control">
+                  <input id="jira_project_key" type="text" class="form-control">
                 </div>
 
                 <label for="issueType" class="label">Type of Issue:</label>
@@ -213,15 +213,15 @@
 
                 <div class="form-group form-content">
                   <label for="Summary" class="label">Summary:</label>
-                  <textarea class="form-control" id="summaryTextArea" rows="3"></textarea>
+                  <textarea class="form-control" id="jira_issue_summary" rows="3"></textarea>
                 </div>
                 <div class="form-group form-content">
                   <label for="Description" class="label">Description:</label>
-                  <textarea class="form-control" id="descriptionTextArea" rows="3"></textarea>
+                  <textarea class="form-control" id="jira_issue_description" rows="3"></textarea>
                 </div>
 
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary text-center">Create Issue</button>
+                  <button type="button" class="btn btn-primary text-center" onclick="createIssue()">Create Issue</button>
                 </div>
                 
               
