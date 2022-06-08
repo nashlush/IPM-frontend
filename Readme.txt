@@ -1,1 +1,1 @@
-<b> Frontend of Intelligent Product Master </b>
+<h2> Frontend of Intelligent Product Master
